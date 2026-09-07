@@ -13,9 +13,9 @@ export function useRobotSection({ id, config }) {
       let finalConfig = { ...config };
 
       // Smart Layout & Mobile Fallback
-      // Calculate viewport and adjust if on mobile/tablet to avoid collision
-      const isMobile = window.innerWidth < 768;
-      const isTablet = window.innerWidth < 1024 && !isMobile;
+      // The layout switches to stacked below lg (1024px). Thus, any screen < 1024px should use the mobile/centered config.
+      const isMobile = window.innerWidth < 1024;
+      const isTablet = false; // We treat everything under 1024px as mobile for the robot's positional purposes.
 
       if (isMobile) {
         if (config.mobileConfig) {
@@ -50,6 +50,11 @@ export function useRobotSection({ id, config }) {
         },
       });
     });
+
+    // If it's the hero section, apply immediately on mount so it doesn't spawn offscreen
+    if (id === 'hero') {
+      applyTarget();
+    }
 
     // Recalculate on resize
     window.addEventListener('resize', applyTarget);
