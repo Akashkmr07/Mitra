@@ -6,25 +6,27 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 export function useRobotSection({ id, config }) {
   const triggerRef = useRef(null);
 
+  const configString = JSON.stringify(config);
+
   useEffect(() => {
     if (!triggerRef.current) return;
+    const currentConfig = JSON.parse(configString);
 
     const applyTarget = () => {
-      let finalConfig = { ...config };
+      let finalConfig = { ...currentConfig };
 
-      // Smart Layout & Mobile Fallback
-      // The layout switches to stacked below lg (1024px). Thus, any screen < 1024px should use the mobile/centered config.
+
       const isMobile = window.innerWidth < 1024;
-      const isTablet = false; // We treat everything under 1024px as mobile for the robot's positional purposes.
+      const isTablet = false;
 
       if (isMobile) {
-        if (config.mobileConfig) {
-          finalConfig = { ...finalConfig, ...config.mobileConfig };
+        if (currentConfig.mobileConfig) {
+          finalConfig = { ...finalConfig, ...currentConfig.mobileConfig };
         } else {
           // Mobile Fallback: Shrink robot and move it to a safe top/bottom decorative zone
-          finalConfig.scale = (config.scale || 1) * 0.75; // 75% size instead of 50%
+          finalConfig.scale = (currentConfig.scale || 1) * 0.75;
 
-          // Force x to be closer to center or edge without overlapping
+      
           if (finalConfig.position) {
             const x = finalConfig.position[0];
             const safeX = x > 0 ? 1.5 : (x < 0 ? -1.5 : 0);
@@ -32,7 +34,7 @@ export function useRobotSection({ id, config }) {
           }
         }
       } else if (isTablet) {
-        finalConfig.scale = (config.scale || 1) * 0.8;
+        finalConfig.scale = (currentConfig.scale || 1) * 0.8;
       }
 
       globalRobotController.setTarget(finalConfig, id);
@@ -63,7 +65,7 @@ export function useRobotSection({ id, config }) {
       ctx.revert();
       window.removeEventListener('resize', applyTarget);
     };
-  }, [id, config]);
+  }, [id, configString]);
 
   return triggerRef;
 }
