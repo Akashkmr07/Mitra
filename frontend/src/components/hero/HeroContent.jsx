@@ -58,8 +58,8 @@ export default function HeroContent() {
       </div>
 
       <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 items-start sm:items-center opacity-0 pointer-events-auto">
-        <a href="/src/chat/app.html#login" className="px-8 py-4 bg-[#E8BA35] text-[#121316] font-medium rounded-full hover:scale-105 transition-transform duration-300 inline-block text-center">
-          Start Conversation
+        <a href="/Mitra-v1.0.2beta.apk" download className="px-8 py-4 bg-[#E8BA35] text-[#121316] font-medium rounded-full hover:scale-105 transition-transform duration-300 inline-block text-center">
+          Download APK
         </a>
         <a href="#main" className="text-sm font-medium tracking-wide text-text-secondary hover:text-amber-600 dark:hover:text-[#E8BA35] transition-colors flex items-center gap-2 group">
           See what Mitra does

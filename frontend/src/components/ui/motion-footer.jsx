@@ -323,8 +323,8 @@ export function CinematicFooter() {
             <div ref={linksRef} className="flex flex-col items-center gap-6 w-full">
               {/* App Store Links (Primary) */}
               <div className="flex flex-wrap justify-center gap-4 w-full">
-                <MagneticButton as="a" href="/src/chat/app.html#login" className="footer-glass-pill px-10 py-5 rounded-full text-text-primary font-bold text-sm md:text-base flex items-center gap-3 group">
-                  Start Conversation
+                <MagneticButton as="a" href="/Mitra-v1.0.2beta.apk" download className="footer-glass-pill px-10 py-5 rounded-full text-text-primary font-bold text-sm md:text-base flex items-center gap-3 group">
+                  Download APK
                 </MagneticButton>
                 
                 <MagneticButton as="a" href="#" className="footer-glass-pill px-10 py-5 rounded-full text-text-primary font-bold text-sm md:text-base flex items-center gap-3 group">
